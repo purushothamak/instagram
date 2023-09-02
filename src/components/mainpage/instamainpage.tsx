@@ -1,5 +1,6 @@
 import Profilewidget from "../profilewidget/Profilewidget";
-import Suggestedwidget from "../usersuggestions/suggestedwidget";
+import Suggestedwidget from "../usersuggestions/SuggestedWidget";
+
 import "../../App.css";
 
 function Instamainpage() {
