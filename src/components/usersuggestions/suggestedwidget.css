@@ -1,0 +1,63 @@
+.suggested-users {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.suggested-users h3 {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+}
+
+.user-picture {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-card h4 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.user-card p {
+  font-size: 14px;
+  color: #888;
+  margin: 0;
+}
+
+.desktop-container {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+.suggested-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+h4.suggested-h4 {
+  margin: 0;
+  margin-right: 5em;
+}
+.suggested-h3 {
+  color: #888;
+  font-size: 18px !important;
+}
+.user-follow {
+  color: rgb(0, 149, 255);
+
+  margin-left: auto;
+}
