@@ -1,4 +1,3 @@
-import React from "react";
 import Profilewidget from "../profilewidget/Profilewidget";
 import Suggestedwidget from "../usersuggestions/suggestedwidget";
 import "../../App.css";

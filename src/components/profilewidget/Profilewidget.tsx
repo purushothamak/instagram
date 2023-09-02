@@ -1,9 +1,16 @@
+import { useNavigate } from "react-router-dom";
 import profile from "../.././assets/profile-pic.jpg";
 import "./Profilewidget.css";
 
 function Profilewidget() {
+  const redirect = useNavigate();
+
+  const handleProfileOnclick = () => {
+    redirect("/Userprofile");
+  };
+
   return (
-    <div className="container">
+    <div className="container" onClick={handleProfileOnclick}>
       <div className="profile-widget">
         <img className="profile-picture" src={profile} alt="Profile" />
         <div className="profile-details">
