@@ -15,6 +15,7 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import Paper from "@mui/material/Paper";
 import sidebarOptions from "./InstaSidebar.mocks";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -30,7 +31,7 @@ const InstaSideBar = () => {
       <List>
         {sidebarOptions.map((item, i) => (
           <ListItem key={i} disablePadding>
-            <ListItemButton>
+            <ListItemButton component={Link} to={item.path}>
               <ListItemIcon>
                 <ListItemIcon sx={{ color: "#212121" }}>
                   {React.createElement(Icons[item.icon])}
