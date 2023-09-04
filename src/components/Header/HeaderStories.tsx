@@ -32,32 +32,25 @@ const HeaderStories = () => {
 
 
     return (
-        <AppBar
-            position="sticky"
+
+        <ImageList
             sx={{
-                bgcolor: "white",
-                width: { sm: `calc(100% - ${drawerWidth}px)` },
-                ml: { sm: `${drawerWidth}px` },
+                gridAutoFlow: "column",
+                gridTemplateColumns: "repeat(auto-fill,minmax(60px,1fr)) !important",
+                gridAutoColumns: "minmax(60px, 1fr)",
+                mx: 2
             }}
         >
-            <ImageList
-                sx={{
-                    gridAutoFlow: "column",
-                    gridTemplateColumns: "repeat(auto-fill,minmax(60px,1fr)) !important",
-                    gridAutoColumns: "minmax(60px, 1fr)",
-                    mx: 2
-                }}
-            >
-                {profiles.map((profStory, i) => (
-                    <ImageListItem key={i}>
-                        <Avatar alt={profStory.uName} src={profStory.imageUrl} sx={{ border: 1.5, height: 56, width: 56, borderColor: 'error.main' }} />
-                        <Typography variant="body2" noWrap gutterBottom sx={{ fontSize: 12, overflow: "hidden", color: 'black', textOverflow: "ellipsis", }}>
-                            {profStory.uName}
-                        </Typography>
-                    </ImageListItem>
-                ))}
-            </ImageList>
-        </AppBar>
+            {profiles.map((profStory, i) => (
+                <ImageListItem key={i}>
+                    <Avatar alt={profStory.uName} src={profStory.imageUrl} sx={{ border: 1.5, height: 56, width: 56, borderColor: 'error.main' }} />
+                    <Typography variant="body2" noWrap gutterBottom sx={{ fontSize: 12, overflow: "hidden", color: 'black', textOverflow: "ellipsis", }}>
+                        {profStory.uName}
+                    </Typography>
+                </ImageListItem>
+            ))}
+        </ImageList>
+
     )
 }
 

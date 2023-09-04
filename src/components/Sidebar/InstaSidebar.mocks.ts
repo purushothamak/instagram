@@ -7,6 +7,7 @@ export interface SidebarOption {
 }
 const sidebarOptions: SidebarOption[] = [
     { title: 'Home', icon: 'Home' },
+    { title: 'Search', icon: 'Search' },
     { title: 'Explore', icon: 'Explore' },
     { title: 'New Post', icon: 'Add' },
     { title: 'Favorites', icon: 'Favorite' },
