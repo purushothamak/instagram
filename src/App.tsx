@@ -1,19 +1,20 @@
-import { Fragment, useState } from 'react'
 
-// import './App.css'
-import InstaSideBar from './components/Sidebar/InstaSideBar'
-import HeaderStories from './components/Header/HeaderStories'
-import InstaFeeds from './components/FeedsSection/InstaFeeds'
-
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Instamainpage from "./components/mainpage/InstaMainPage";
+import Profilemainpage from "./components/userprofilepage/ProfileMainPage";
+import SearchUser from "./components/searchuser/SearchUser";
 function App() {
-
   return (
-    <Fragment>
-      <InstaSideBar />
-      <HeaderStories />
-      <InstaFeeds />
-    </Fragment>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Instamainpage />} />
+        <Route path="/userprofile" element={<Profilemainpage />} />
+        <Route path="/SearchUser" element={<SearchUser />} />
+      </Routes>
+    </BrowserRouter>
+  );
+
 }
 
-export default App
+export default App;

@@ -1,0 +1,46 @@
+.profile-widget {
+  display: flex;
+}
+
+.profile-picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  width: 18em;
+}
+
+.profile-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.profile-description {
+  font-size: 14px;
+  color: #888;
+  margin: 0;
+  margin-right: 10em;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+
+.profile-switch {
+  font-size: 14px;
+  color: rgb(0, 110, 255);
+  margin: 0;
+}
