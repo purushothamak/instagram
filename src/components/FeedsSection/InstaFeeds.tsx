@@ -11,6 +11,10 @@ import ChatBubbleOutlineRoundedIcon from '@mui/icons-material/ChatBubbleOutlineR
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import { AppBar, Box } from '@mui/material';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
+
 
 interface Post {
     id: number;
@@ -67,13 +71,14 @@ const InstaFeeds = () => {
                         }
                         title={post.title}
                     />
-                    <CardMedia
-                        component="img"
+                    <LazyLoadImage
+                        effect='blur'
                         height="354"
                         loading="lazy"
-                        image={post.images[1]}
+                        src={post.images[1]}
                         alt={post.title}
                     />
+
                     <CardActions disableSpacing sx={{ display: 'flex', justifyContent: 'space-between' }}>
                         <Box>
                             <IconButton aria-label="add to favorites">
