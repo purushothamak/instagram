@@ -15,7 +15,3 @@
   overflow-y: scroll;
   color: black;
 }
-
-.search-result:hover {
-  background-color: #efefef;
-}

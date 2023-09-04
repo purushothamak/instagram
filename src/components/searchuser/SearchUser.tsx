@@ -16,13 +16,15 @@ const SearchUser = () => {
       fetch("https://jsonplaceholder.typicode.com/users")
         .then((response) => response.json())
         .then((json) => {
-          const results = json.filter((user: { name: string }) => {
-            return (
-              user &&
-              user.name &&
-              user.name.toLowerCase().includes(input.toLowerCase())
-            );
-          });
+          const results = json.filter(
+            (user: { [x: string]: string; name: string }) => {
+              return (
+                user &&
+                user.name &&
+                user.name.toLowerCase().includes(input.toLowerCase())
+              );
+            }
+          );
           setSearchResults(results);
           setIsLoading(false);
         });
@@ -39,14 +41,14 @@ const SearchUser = () => {
     <div className="search-input">
       <Box sx={{ "& > :not(style)": { m: 1 } }}>
         <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-          <SearchIcon sx={{ color: "white", mr: 1, my: 0.5 }} />
+          <SearchIcon sx={{ color: "black", my: 0.5 }} />
           <TextField
             id="input-with-sx"
             label="Search"
             variant="standard"
             value={input}
             onChange={(e) => handleChange(e.target.value)}
-            sx={{ backgroundColor: "grey", borderRadius: "1em", width: "18em" }}
+            sx={{ borderRadius: "1em", width: "18em" }}
           />
         </Box>
       </Box>
