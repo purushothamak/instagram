@@ -16,7 +16,7 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import Paper from "@mui/material/Paper";
 import sidebarOptions from "./InstaSidebar.mocks";
 
-const drawerWidth = 140;
+const drawerWidth = 240;
 
 const InstaSideBar = () => {
   const theme = useTheme<Theme>();
