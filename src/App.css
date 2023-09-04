@@ -15,3 +15,8 @@
     display: none;
   }
 }
+
+.feed-section {
+  margin-left: 16em;
+  margin-top: -16em;
+}
