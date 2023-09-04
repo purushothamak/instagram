@@ -9,11 +9,13 @@ import "../../App.css";
 function Instamainpage() {
   return (
     <div className="rightside-content">
-      <InstaSideBar />
-      <HeaderStories />
-      <InstaFeeds />
       <Profilewidget />
       <Suggestedwidget />
+      <div className="feed-section">
+        <InstaSideBar />
+        <HeaderStories />
+        <InstaFeeds />
+      </div>
     </div>
   );
 }

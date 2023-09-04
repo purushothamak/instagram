@@ -61,3 +61,12 @@ h4.suggested-h4 {
 
   margin-left: auto;
 }
+
+.suggested-users {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-content: end;
+  flex-wrap: wrap;
+}
