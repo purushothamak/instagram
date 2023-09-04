@@ -18,6 +18,7 @@ import sidebarOptions from "./InstaSidebar.mocks";
 import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
+
 const InstaSideBar = () => {
   const theme = useTheme<Theme>();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
