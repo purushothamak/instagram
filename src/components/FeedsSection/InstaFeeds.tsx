@@ -11,6 +11,8 @@ import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineR
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import { AppBar, Box, Typography } from "@mui/material";
+import LikeButton from "./LikeButton";
+import SaveButton from "./SaveButton";
 
 interface Post {
   uImg: string;
@@ -104,9 +106,7 @@ const InstaFeeds = () => {
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
             <Box>
-              <IconButton aria-label="add to favorites">
-                <FavoriteBorderRoundedIcon />
-              </IconButton>
+              <LikeButton postId={post.id} />
               <IconButton aria-label="add to messages">
                 <ChatBubbleOutlineRoundedIcon />
               </IconButton>
@@ -116,7 +116,7 @@ const InstaFeeds = () => {
             </Box>
             <Box>
               <IconButton aria-label="save">
-                <BookmarkBorderOutlinedIcon />
+                <SaveButton />
               </IconButton>
             </Box>
           </CardActions>
