@@ -10,7 +10,7 @@ import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
-import { AppBar, Box } from "@mui/material";
+import { AppBar, Box, Typography } from "@mui/material";
 
 interface Post {
   uImg: string;
@@ -71,14 +71,6 @@ const InstaFeeds = () => {
     return () => window.removeEventListener('scroll', handleInfiniteScroll)
   }, []);
 
-  // const yes = posts.map((x) => {
-  //   const str = x.uName;
-  //   const firstName = str.split(' ')[0]
-  //   return firstName;
-  // })
-
-  // console.log(yes)
-
   return (
     <Box
       component="main"
@@ -92,14 +84,13 @@ const InstaFeeds = () => {
       {posts.map((post, i) => (
         <Card sx={{ maxWidth: 385, marginBottom: 5 }} key={i}>
           <CardHeader
-            avatar={<Avatar alt={post.title} src={post.uProfileLogo} />}
+            avatar={<Avatar alt={post.uName} src={post.uProfileLogo} />}
+            title={<Typography sx={{ textAlign: 'left' }}>{post.uName}</Typography>}
             action={
               <IconButton aria-label="settings">
                 <MoreHoriz />
               </IconButton>
             }
-
-            title={post.uName}
           />
           <CardMedia
             component="img"
@@ -124,7 +115,7 @@ const InstaFeeds = () => {
               </IconButton>
             </Box>
             <Box>
-              <IconButton aria-label="save" sx={{ justifySelf: "flex-end" }}>
+              <IconButton aria-label="save">
                 <BookmarkBorderOutlinedIcon />
               </IconButton>
             </Box>
