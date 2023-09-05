@@ -1,5 +1,23 @@
 # React + TypeScript + Vite
 
+# Project Settup
+
+Installation
+
+Clone the repo to your local cachine
+
+git clone https://github.com/purushothamak/instagram.git
+
+cd instagram
+
+npm install (Project dependencies)
+
+npm run dev (Start development server)
+
+This will start the development server, and you can access the project in your web browser at
+
+http://localhost:5173/
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
