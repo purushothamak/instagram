@@ -10,40 +10,70 @@ import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
-import { AppBar, Box } from "@mui/material";
+import { AppBar, Box, Typography } from "@mui/material";
 
 interface Post {
+  uImg: string;
+  uProfileLogo: string
+  uName: string;
   id: number;
-  title: string;
-  images: string;
 }
 
 const InstaFeeds = () => {
   const [posts, setPosts] = useState<Post[]>([]);
+  const [page, setPage] = useState(1);
   const drawerWidth = 140;
 
   useEffect(() => {
     const instaPostsDatas = async () => {
       try {
-        const allPosts = await fetch(`https://api.escuelajs.co/api/v1/products
+        const allPosts = await fetch(`https://dummyjson.com/products?_limit=9&_page=${page}
                 `);
         if (!allPosts.ok) {
           throw new Error("Network response was not ok");
         }
-        const post = await allPosts.json();
-        console.log("check posts::", post);
+        const postdatas = await allPosts.json();
+        console.log("check posts::", postdatas.products);
+
+        const post = postdatas.products.map((post: {
+          url: any;
+          images: any; title: any; id: any;
+        }) => (
+          {
+            uName: post.title,
+            uImg: post.images[1],
+            uProfileLogo: `https://i.pravatar.cc/100?u=${post.id}`
+          }
+        ))
+        console.log("Yo:", post)
         setPosts((prevPosts) => [...prevPosts, ...post]);
       } catch (error) {
         console.error("Error fetching posts:", error);
       }
     };
     instaPostsDatas();
+  }, [page]);
+
+  const handleInfiniteScroll = async () => {
+    try {
+      if (window.innerHeight + document.documentElement.scrollTop + 1 >
+        document.documentElement.scrollHeight
+      ) {
+        setPage((prev) => prev + 1)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleInfiniteScroll);
+    return () => window.removeEventListener('scroll', handleInfiniteScroll)
   }, []);
 
   return (
     <Box
       component="main"
-      // sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       sx={{
         width: { sm: `calc(100% - ${drawerWidth}px)` },
         height: { sm: `calc(100% - ${AppBar}px)` },
@@ -54,20 +84,20 @@ const InstaFeeds = () => {
       {posts.map((post, i) => (
         <Card sx={{ maxWidth: 385, marginBottom: 5 }} key={i}>
           <CardHeader
-            avatar={<Avatar alt={post.title} src={post.images} />}
+            avatar={<Avatar alt={post.uName} src={post.uProfileLogo} />}
+            title={<Typography sx={{ textAlign: 'left' }}>{post.uName}</Typography>}
             action={
               <IconButton aria-label="settings">
                 <MoreHoriz />
               </IconButton>
             }
-            title={post.title}
           />
           <CardMedia
             component="img"
             height="354"
             loading="lazy"
-            image={post.images[1]}
-            alt={post.title}
+            image={post.uImg}
+            alt={post.uName}
           />
           <CardActions
             disableSpacing
@@ -85,7 +115,7 @@ const InstaFeeds = () => {
               </IconButton>
             </Box>
             <Box>
-              <IconButton aria-label="save" sx={{ justifySelf: "flex-end" }}>
+              <IconButton aria-label="save">
                 <BookmarkBorderOutlinedIcon />
               </IconButton>
             </Box>

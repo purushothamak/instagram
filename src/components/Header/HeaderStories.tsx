@@ -50,7 +50,6 @@ const HeaderStories = () => {
                 </ImageListItem>
             ))}
         </ImageList>
-
     )
 }
 
