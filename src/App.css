@@ -9,9 +9,8 @@
   top: 70px;
   right: 95px;
 }
-
-@media (max-width: 768px) {
-  .rightside-content {
+@media (min-width: 1268px) {
+  .suggested-users {
     display: none;
   }
 }
