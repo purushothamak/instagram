@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./../../App.css";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import * as Icons from "@mui/icons-material";
@@ -10,7 +10,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Toolbar from "@mui/material/Toolbar";
 import { useMediaQuery, Theme, useTheme } from "@mui/material";
-import { StyledSidebarDrawer } from "./InstaSideBar.style";
+import { StyledSidebarDrawer, customStyles } from "./InstaSideBar.style";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import Paper from "@mui/material/Paper";
@@ -53,11 +53,16 @@ const InstaSideBar = () => {
           elevation={3}
         >
           <BottomNavigation>
-            {sidebarOptions.map((item) => (
+            {sidebarOptions.map((item, index) => (
               <BottomNavigationAction
+                key={index}
                 label="Recents"
                 value="recents"
                 icon={React.createElement(Icons[item.icon])}
+                component={Link}
+                to={item.path}
+                sx={isMobile ? customStyles.mobileBottomNavAction : null}
+                className="custom-bottom-nav-action"
               />
             ))}
           </BottomNavigation>
@@ -77,6 +82,7 @@ const InstaSideBar = () => {
                 "& .MuiDrawer-paper": {
                   boxSizing: "border-box",
                   width: drawerWidth,
+                  padding: 0,
                 },
               }}
               open

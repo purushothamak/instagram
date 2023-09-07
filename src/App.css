@@ -4,18 +4,11 @@
   padding: 2rem;
   text-align: center;
 }
-.rightside-content {
-  position: absolute;
-  top: 70px;
-  right: 95px;
-}
-@media (min-width: 1268px) {
-  .suggested-users {
-    display: none;
-  }
-}
 
 .feed-section {
   margin-left: 16em;
-  margin-top: -16em;
+  margin-top: -3em;
+}
+.custom-bottom-nav-action {
+  min-width: 0 !important;
 }

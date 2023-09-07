@@ -1,7 +1,15 @@
 import "./suggestedwidget.css";
 import user1 from "../../assets/user1.jpeg";
+import { useMediaQuery, createTheme } from "@mui/material";
+
+const theme = createTheme();
 
 function SuggestedUsers() {
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+
+  if (!isDesktop) {
+    return null;
+  }
   return (
     <div className="suggested-users">
       <div className="suggested-heading">

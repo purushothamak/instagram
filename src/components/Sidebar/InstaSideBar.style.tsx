@@ -1,6 +1,5 @@
-
-import { styled } from '@mui/system';
-import { Drawer } from '@mui/material';
+import { styled } from "@mui/system";
+import { Drawer } from "@mui/material";
 
 export const StyledSidebarDrawer = styled(Drawer)`
 borderTop: '1px solid #ddd',
@@ -13,3 +12,10 @@ justifyContent: 'space-around',
 padding: '10px',
 zIndex: 1,
 `;
+export const customStyles = {
+  mobileBottomNavAction: {
+    padding: 0,
+    width: "auto",
+    minwidth: 0,
+  },
+};

@@ -57,7 +57,7 @@ const SearchUser = () => {
         <div>No results found</div>
       )}
       {!isLoading && input && searchResults.length > 0 && (
-        <SearchResults results={searchResults} result={""} />
+        <SearchResults results={searchResults} />
       )}
     </div>
   );
