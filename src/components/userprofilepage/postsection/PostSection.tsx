@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, SetStateAction } from "react";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import Tabs from "@mui/material/Tabs";
@@ -19,12 +19,12 @@ export default function PostImageList() {
       setPostData(parsedData);
     }
   }, []);
-  const handleChange = (event, newValue) => {
+  const handleChange = (_event: any, newValue: SetStateAction<number>) => {
     setValue(newValue);
   };
   return (
     <div>
-      <Tabs value={value} onChange={handleChange} centered textColor="white">
+      <Tabs value={value} onChange={handleChange} centered textColor="primary">
         <Tab label="MyPost" />
         <Tab label="post" />
         <Tab label="Saved" />
@@ -40,7 +40,7 @@ export default function PostImageList() {
         )}
       </div>
       <div role="tabpanel" hidden={value !== 1}>
-        <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+        <ImageList sx={{ height: 450 }} cols={3} rowHeight={164}>
           {itemData.map((item, index) => (
             <ImageListItem key={index}>
               <img
