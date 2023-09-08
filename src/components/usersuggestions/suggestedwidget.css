@@ -42,6 +42,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 23em;
 }
 .user-info {
   display: flex;
@@ -58,7 +59,6 @@ h4.suggested-h4 {
 }
 .user-follow {
   color: rgb(0, 149, 255);
-
   margin-left: auto;
 }
 
@@ -69,4 +69,9 @@ h4.suggested-h4 {
   flex-direction: column;
   align-content: end;
   flex-wrap: wrap;
+}
+@media (max-width: 960px) {
+  .suggested-users {
+    display: none;
+  }
 }
