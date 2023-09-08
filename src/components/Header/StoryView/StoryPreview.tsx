@@ -21,7 +21,7 @@ const StoryPreview: React.FC<Proprops> = ({ userIds }) => {
     const { name, username }: { name?: string, username?: string } = previewProfiles;
 
 
-    let burakHeading: Person = {
+    let storyViewHeading: Person = {
         heading: name,
         subheading: username,
         profileImage: `https://i.pravatar.cc/100?u=${userIds}`,
@@ -31,42 +31,42 @@ const StoryPreview: React.FC<Proprops> = ({ userIds }) => {
         {
             url: 'https://img.freepik.com/premium-photo/abstract-background-inspired-by-surreal-beauty-ocean-incorporating-fluid-waves_953733-740.jpg?w=2000',
             type: 'image',
-            header: burakHeading,
+            header: storyViewHeading,
             duration: 1500,
         },
         {
             url: 'https://i.imgur.com/in5Jr1h.jpg',
             type: 'image',
-            header: burakHeading,
+            header: storyViewHeading,
 
         },
         {
             url: 'https://i.imgur.com/Zo5Kpnd.mp4',
             type: 'video',
-            header: burakHeading
+            header: storyViewHeading
         },
         {
             url: 'https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80',
             type: 'image',
-            header: burakHeading,
+            header: storyViewHeading,
         },
         {
             url: 'https://img.freepik.com/premium-photo/key-visual-colorful-tree-life-front-galaxy-universe-crystals-nebulae-supernova_492154-1452.jpg',
             type: 'image',
-            header: burakHeading,
+            header: storyViewHeading,
         },
     ]
     const initialStories2 = [
         {
             url: 'https://i0.wp.com/i.redd.it/76pc6hhcgvo51.jpg?resize=1200%2C800&ssl=1',
             type: 'image',
-            header: burakHeading,
+            header: storyViewHeading,
             duration: 1500,
         },
         {
             url: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aHVtYW58ZW58MHx8MHx8fDA%3D&w=1000&q=80',
             type: 'image',
-            header: burakHeading,
+            header: storyViewHeading,
 
         },
     ]
@@ -74,13 +74,13 @@ const StoryPreview: React.FC<Proprops> = ({ userIds }) => {
         {
             url: 'https://th.bing.com/th/id/OIG.lVXjWwlHyIo4QdjnC1YE',
             type: 'image',
-            header: burakHeading,
+            header: storyViewHeading,
             duration: 1500,
         },
         {
             url: 'https://i.imgur.com/in5Jr1h.jpg',
             type: 'image',
-            header: burakHeading,
+            header: storyViewHeading,
 
         },
     ]
@@ -88,7 +88,7 @@ const StoryPreview: React.FC<Proprops> = ({ userIds }) => {
         {
             url: 'https://cutewallpaper.org/21/photo/7-Photo-Printing-Apps-to-Preserve-Your-Memories-Time.jpg',
             type: 'image',
-            header: burakHeading,
+            header: storyViewHeading,
             duration: 1500,
         },
 
@@ -97,31 +97,31 @@ const StoryPreview: React.FC<Proprops> = ({ userIds }) => {
         {
             url: 'https://www.gettyimages.com/gi-resources/images/500px/983794168.jpg',
             type: 'image',
-            header: burakHeading,
+            header: storyViewHeading,
             duration: 1500,
         },
         {
             url: 'https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_640.jpg',
             type: 'image',
-            header: burakHeading,
+            header: storyViewHeading,
         },
         {
             url: 'https://images.pexels.com/photos/355235/pexels-photo-355235.jpeg?cs=srgb&dl=pexels-pixabay-355235.jpg&fm=jpg',
             type: 'image',
-            header: burakHeading,
+            header: storyViewHeading,
         },
     ]
     const initialStories6 = [
         {
             url: 'https://th.bing.com/th/id/OIG.lVXjWwlHyIo4QdjnC1YE',
             type: 'image',
-            header: burakHeading,
+            header: storyViewHeading,
             duration: 1500,
         },
         {
             url: 'https://i.imgur.com/in5Jr1h.jpg',
             type: 'image',
-            header: burakHeading,
+            header: storyViewHeading,
 
         },
     ]
@@ -129,13 +129,13 @@ const StoryPreview: React.FC<Proprops> = ({ userIds }) => {
         {
             url: 'https://th.bing.com/th/id/OIG.lVXjWwlHyIo4QdjnC1YE',
             type: 'image',
-            header: burakHeading,
+            header: storyViewHeading,
             duration: 1500,
         },
         {
             url: 'https://i.imgur.com/in5Jr1h.jpg',
             type: 'image',
-            header: burakHeading,
+            header: storyViewHeading,
 
         },
     ]
@@ -143,13 +143,13 @@ const StoryPreview: React.FC<Proprops> = ({ userIds }) => {
         {
             url: 'https://th.bing.com/th/id/OIG.lVXjWwlHyIo4QdjnC1YE',
             type: 'image',
-            header: burakHeading,
+            header: storyViewHeading,
             duration: 1500,
         },
         {
             url: 'https://i.imgur.com/in5Jr1h.jpg',
             type: 'image',
-            header: burakHeading,
+            header: storyViewHeading,
 
         },
     ]
@@ -157,13 +157,13 @@ const StoryPreview: React.FC<Proprops> = ({ userIds }) => {
         {
             url: 'https://th.bing.com/th/id/OIG.lVXjWwlHyIo4QdjnC1YE',
             type: 'image',
-            header: burakHeading,
+            header: storyViewHeading,
             duration: 1500,
         },
         {
             url: 'https://i.imgur.com/in5Jr1h.jpg',
             type: 'image',
-            header: burakHeading,
+            header: storyViewHeading,
 
         },
     ]
@@ -171,13 +171,13 @@ const StoryPreview: React.FC<Proprops> = ({ userIds }) => {
         {
             url: 'https://th.bing.com/th/id/OIG.lVXjWwlHyIo4QdjnC1YE',
             type: 'image',
-            header: burakHeading,
+            header: storyViewHeading,
             duration: 1500,
         },
         {
             url: 'https://i.imgur.com/in5Jr1h.jpg',
             type: 'image',
-            header: burakHeading,
+            header: storyViewHeading,
 
         },
     ]
