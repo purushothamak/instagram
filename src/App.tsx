@@ -4,6 +4,7 @@ import Instamainpage from "./components/mainpage/InstaMainPage";
 import Profilemainpage from "./components/userprofilepage/ProfileMainPage";
 import Search from "./components/searchuser/Search";
 import AddPostMainPage from "./components/AddPost/AddPostmainpage";
+import JustDisplay from "./components/Extra/JustDisplay";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/userprofile" element={<Profilemainpage />} />
         <Route path="/SearchUser" element={<Search />} />
         <Route path="/AddPost" element={<AddPostMainPage />} />
+        <Route path="/*" element={<JustDisplay />} />
       </Routes>
     </BrowserRouter>
   );

@@ -6,13 +6,12 @@ import CardActions from "@mui/material/CardActions";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import { MoreHoriz } from "@mui/icons-material";
-import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
-import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import { AppBar, Box, Typography } from "@mui/material";
 import LikeButton from "./LikeButton";
 import SaveButton from "./SaveButton";
+import EditFeeds from "./EditFeeds";
 
 interface Post {
   uImg: string;
@@ -24,6 +23,7 @@ interface Post {
 const InstaFeeds = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [page, setPage] = useState(1);
+  const [settingOpen, setSettingOpen] = useState(false);
   const drawerWidth = 140;
 
   useEffect(() => {
@@ -73,6 +73,13 @@ const InstaFeeds = () => {
     return () => window.removeEventListener('scroll', handleInfiniteScroll)
   }, []);
 
+  const handleOpenSettings = () => {
+    setSettingOpen(true);
+  }
+  const handleClose = (_value: string) => {  //prefix
+    setSettingOpen(false);
+  };
+
   return (
     <Box
       component="main"
@@ -89,7 +96,7 @@ const InstaFeeds = () => {
             avatar={<Avatar alt={post.uName} src={post.uProfileLogo} />}
             title={<Typography sx={{ textAlign: 'left' }}>{post.uName}</Typography>}
             action={
-              <IconButton aria-label="settings">
+              <IconButton aria-label="settings" onClick={handleOpenSettings}>
                 <MoreHoriz />
               </IconButton>
             }
@@ -122,6 +129,7 @@ const InstaFeeds = () => {
           </CardActions>
         </Card>
       ))}
+      {settingOpen && <EditFeeds settingOpen={settingOpen} handleClose={handleClose} />}
     </Box>
   );
 };
