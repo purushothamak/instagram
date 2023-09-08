@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from 'react'
-
 import Stories from 'react-insta-stories';
-import StoryDialog from './StoryDialog';
 import { Box } from '@mui/material';
-import { Story } from 'react-insta-stories/dist/interfaces';
-import { initialStories, initialStories10, initialStories2, initialStories3, initialStories4, initialStories5, initialStories6, initialStories7, initialStories8, initialStories9 } from './StoryViewMock';
 
 
 interface Proprops {
-    userIds: number;
+    userIds?: number;
 }
 
 type Person = {
-
-    heading: string;
-    subheading: string;
+    heading: string | undefined;
+    subheading: string | undefined;
     profileImage: string;
 };
 
@@ -23,7 +18,7 @@ const StoryPreview: React.FC<Proprops> = ({ userIds }) => {
     const [previewProfiles, setPreviewProfiles] = useState({});
 
 
-    const { name, username }: { name: string, username: string } = previewProfiles;
+    const { name, username }: { name?: string, username?: string } = previewProfiles;
 
 
     let burakHeading: Person = {
