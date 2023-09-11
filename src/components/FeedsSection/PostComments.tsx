@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import DialogContent from '@mui/material/DialogContent';
 import CloseIcon from '@mui/icons-material/Close';
 import { BootstrapDialog } from './PostComments.style';
-import { Box, Button, FormControl, Input, InputAdornment, InputLabel, List, ListItem, ListItemText } from '@mui/material';
+import { Box, Button, FormControl, List, ListItem, ListItemText, TextField, Theme, useMediaQuery } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
+import { useTheme } from "@mui/material";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardHeader from '@mui/material/CardHeader';
 import Avatar from '@mui/material/Avatar';
+
 
 interface commentsProps {
     commentsOpen: boolean;
@@ -27,6 +28,8 @@ interface Comment {
 }
 
 const PostComments: React.FC<commentsProps> = ({ commentsOpen, handleCommentsClose, commentEachId }) => {
+    const theme = useTheme<Theme>();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
     const [commentEachDetails, setCommentEachDetails] = useState<pp>({});
     const [comments, setComments] = useState<Comment[]>([]);
@@ -65,6 +68,7 @@ const PostComments: React.FC<commentsProps> = ({ commentsOpen, handleCommentsClo
         }
     };
 
+
     return (
         <BootstrapDialog
             onClose={handleCommentsClose}
@@ -83,17 +87,10 @@ const PostComments: React.FC<commentsProps> = ({ commentsOpen, handleCommentsClo
             >
                 <CloseIcon />
             </IconButton>
-            <DialogContent dividers>
+            <DialogContent dividers >
                 <Card sx={{ display: 'flex' }}>
-                    <Card sx={{ maxWidth: 345 }}>
-                        <CardMedia
-                            component="img"
-                            image={thumbnail}
-                            alt="Paella dish"
-                            sx={{ objectFit: 'fit' }}
-                        />
-                    </Card>
-                    <Card sx={{ minWidth: 345, minHeight: 545, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                    {!isMobile && <img src={thumbnail} alt="pic" style={{ minWidth: 295, objectFit: 'cover' }} />}
+                    <Card sx={{ minWidth: 295, minHeight: 545, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                         <CardHeader
                             avatar={
                                 <Avatar aria-label="recipe" src={proPic} />
@@ -101,7 +98,7 @@ const PostComments: React.FC<commentsProps> = ({ commentsOpen, handleCommentsClo
                             title={title}
                             subheader={brand}
                         />
-                        <CardContent>
+                        <CardContent sx={{ flex: 1 }}>
                             <Typography variant="body2" color="text.secondary">
                                 <Box marginTop={2}>
                                     <List>
@@ -114,14 +111,12 @@ const PostComments: React.FC<commentsProps> = ({ commentsOpen, handleCommentsClo
                                 </Box>
                             </Typography>
                         </CardContent>
-                        <CardContent sx={{}}>
-                            <FormControl fullWidth sx={{ m: 1 }} variant="standard">
-                                <InputLabel htmlFor="standard-adornment-amount">Enter Your Comment...</InputLabel>
-                                <Input
-                                    id="standard-adornment-amount"
-                                    startAdornment={<InputAdornment position="start"></InputAdornment>}
+                        <CardContent >
+                            <FormControl fullWidth sx={{ pr: 2 }} variant="standard">
+                                <TextField id="outlined-basic" variant="outlined"
                                     value={newComment}
                                     onChange={(e) => setNewComment(e.target.value)}
+                                    sx={{ mb: 1 }}
                                 />
                                 <Button variant="contained" onClick={handleAddComment}>
                                     Add Comment
