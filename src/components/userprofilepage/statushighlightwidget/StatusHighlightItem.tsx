@@ -1,17 +1,20 @@
+import React from "react";
 interface StatusHighlightItemProps {
   imageSrc: string;
   highlightname: string;
+  imageFile?: File;
 }
-function StatusHighlightItem({
+
+const StatusHighlightItem: React.FC<StatusHighlightItemProps> = ({
   imageSrc,
   highlightname,
-}: StatusHighlightItemProps) {
+}) => {
   return (
     <div className="status-highlight-item">
-      <img src={imageSrc} alt="User's Status" className="status-image" />
-      <p>{highlightname}</p>
+      <img className="status-image" src={imageSrc} alt={highlightname} />
+      <p className="status-name">{highlightname}</p>
     </div>
   );
-}
+};
 
 export default StatusHighlightItem;

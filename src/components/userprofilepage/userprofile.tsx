@@ -1,7 +1,6 @@
 import profile from "../.././assets/profile-pic.jpg";
 import "./userprofile.css";
 import Button from "@mui/material/Button";
-import SettingsIcon from "@mui/icons-material/Settings";
 
 function Userprofile() {
   return (
@@ -11,7 +10,7 @@ function Userprofile() {
         <div className="profile1-name">
           <p>purushothamaruban</p>
         </div>
-        <div className="">
+        <div className="profile-edit-btn">
           <Button
             variant="contained"
             sx={{
@@ -29,7 +28,7 @@ function Userprofile() {
             Edit Profile
           </Button>
         </div>
-        <div className="">
+        <div className="archive-btn">
           <Button
             variant="contained"
             sx={{
@@ -45,13 +44,6 @@ function Userprofile() {
           >
             View archive
           </Button>
-        </div>
-        <div className="settings-icon">
-          <SettingsIcon
-            sx={{
-              alignItems: "center",
-            }}
-          />
         </div>
       </div>
       <div className="follower-info">
