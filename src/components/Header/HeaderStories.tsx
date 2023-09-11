@@ -8,6 +8,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import StoryDialog from "./StoryView/StoryDialog";
+import MobileHeader from "./MobileHeader";
 
 interface UserProfilesProps {
   uName: string;
@@ -62,6 +63,7 @@ const HeaderStories = () => {
   return (
 
     <div>
+      <MobileHeader />
       <ImageList
         sx={{
           gridAutoFlow: "column",
