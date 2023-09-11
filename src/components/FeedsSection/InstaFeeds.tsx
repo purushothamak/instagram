@@ -28,7 +28,7 @@ const InstaFeeds = () => {
   const [settingOpen, setSettingOpen] = useState(false);
   const [commentsOpen, setCommentsOpen] = useState(false);
   const [commentEachId, setCommentEachId] = useState<number>();
-  const drawerWidth = 140;
+  const drawerWidth = 250;
 
   useEffect(() => {
     const instaPostsDatas = async () => {
