@@ -8,7 +8,7 @@ function Search() {
 
   return (
     <div>
-      <InstaSideBar />
+      {/* <InstaSideBar /> */}
       <SearchUser setResults={setResults} />
       <SearchResults results={results} />
     </div>
