@@ -15,4 +15,8 @@ export const settionsOptions = [
         id: 4,
         title: 'Go to Posts',
     },
+    {
+        id: 5,
+        title: 'Cancel',
+    },
 ]
