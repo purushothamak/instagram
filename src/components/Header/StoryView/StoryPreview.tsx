@@ -244,7 +244,7 @@ const StoryPreview: React.FC<Proprops> = ({ userIds }) => {
     }, [userIds]);
 
     return (
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', backgroundColor: 'black' }}>
             <Stories
                 stories={selectedObject}
                 defaultInterval={2000}

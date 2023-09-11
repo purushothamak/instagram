@@ -12,8 +12,10 @@ import { AppBar, Box, Typography } from "@mui/material";
 import LikeButton from "./LikeButton";
 import SaveButton from "./SaveButton";
 import EditFeeds from "./EditFeeds";
+import PostComments from "./PostComments";
 
 interface Post {
+  uId: number;
   uImg: string;
   uProfileLogo: string
   uName: string;
@@ -22,15 +24,16 @@ interface Post {
 
 const InstaFeeds = () => {
   const [posts, setPosts] = useState<Post[]>([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(2);
   const [settingOpen, setSettingOpen] = useState(false);
+  const [commentsOpen, setCommentsOpen] = useState(false);
+  const [commentEachId, setCommentEachId] = useState<number>();
   const drawerWidth = 140;
 
   useEffect(() => {
     const instaPostsDatas = async () => {
       try {
-        const allPosts = await fetch(`https://dummyjson.com/products?_limit=9&_page=${page}
-                `);
+        const allPosts = await fetch(`https://dummyjson.com/products?_limit=9&_page=${page}`);
         if (!allPosts.ok) {
           throw new Error("Network response was not ok");
         }
@@ -42,6 +45,7 @@ const InstaFeeds = () => {
           images: any; title: any; id: any;
         }) => (
           {
+            uId: post.id,
             uName: post.title,
             uImg: post.images[1],
             uProfileLogo: `https://i.pravatar.cc/100?u=${post.id}`
@@ -79,6 +83,13 @@ const InstaFeeds = () => {
   const handleClose = (_value: string) => {  //prefix
     setSettingOpen(false);
   };
+  const handleCommentClick = (comUserId: number) => {
+    setCommentsOpen(!commentsOpen)
+    setCommentEachId(comUserId)
+  }
+  const handleCommentsClose = () => {
+    setCommentsOpen(false);
+  };
 
   return (
     <Box
@@ -114,7 +125,7 @@ const InstaFeeds = () => {
           >
             <Box>
               <LikeButton postId={post.id} />
-              <IconButton aria-label="add to messages">
+              <IconButton aria-label="add to messages" onClick={() => handleCommentClick(post.uId)}>
                 <ChatBubbleOutlineRoundedIcon />
               </IconButton>
               <IconButton aria-label="share">
@@ -129,11 +140,16 @@ const InstaFeeds = () => {
           </CardActions>
         </Card>
       ))}
+
       {settingOpen && <EditFeeds settingOpen={settingOpen} handleClose={handleClose} />}
+      {commentsOpen && <PostComments commentsOpen={commentsOpen} handleCommentsClose={handleCommentsClose} commentEachId={commentEachId} />}
     </Box>
   );
 };
 
 export default InstaFeeds;
+
+
+
 
 // https://dummyjson.com/products

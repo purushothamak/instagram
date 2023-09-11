@@ -18,26 +18,26 @@ const StoryDialog: React.FC<StoryDialogProps> = ({ open, handleClose, userIds })
 
 
     return (
-        <div>
-            <Dialog
-                fullScreen
-                open={open}
-                onClose={handleClose}
-            >
-                <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <h3>Instagram</h3>
-                    <IconButton
-                        edge="start"
-                        color="inherit"
-                        onClick={handleClose}
-                        aria-label="close"
-                    >
-                        <CloseIcon />
-                    </IconButton>
-                </Toolbar>
-                <StoryPreview userIds={userIds} />
-            </Dialog>
-        </div>
+        <Dialog
+            fullScreen
+            open={open}
+            onClose={handleClose}
+            sx={{ backgroundColor: 'black' }}
+        >
+            <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', color: 'white', backgroundColor: 'black' }}>
+                <h3>Instagram</h3>
+                <IconButton
+                    edge="start"
+                    color="inherit"
+                    onClick={handleClose}
+                    aria-label="close"
+                >
+                    <CloseIcon sx={{ color: 'white' }} />
+                </IconButton>
+            </Toolbar>
+            <StoryPreview userIds={userIds} />
+        </Dialog>
+
     )
 }
 
