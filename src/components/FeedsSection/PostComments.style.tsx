@@ -8,4 +8,5 @@ export const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogActions-root': {
         padding: theme.spacing(1),
     },
+    // maxWidth: '800px',
 }));
