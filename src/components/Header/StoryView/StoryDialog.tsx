@@ -1,9 +1,8 @@
 import React from 'react'
-
-import Dialog from '@mui/material/Dialog';
 import CloseIcon from '@mui/icons-material/Close';
 import { IconButton, Toolbar } from '@mui/material';
 import StoryPreview from './StoryPreview';
+import { StyledDialog } from './StoryDialog.style';
 
 
 
@@ -16,14 +15,13 @@ interface StoryDialogProps {
 
 const StoryDialog: React.FC<StoryDialogProps> = ({ open, handleClose, userIds }) => {
 
-
     return (
-        <Dialog
+        <StyledDialog
             fullScreen
             open={open}
             onClose={handleClose}
-            sx={{ backgroundColor: 'black' }}
         >
+
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', color: 'white', backgroundColor: 'black' }}>
                 <h3>Instagram</h3>
                 <IconButton
@@ -36,8 +34,7 @@ const StoryDialog: React.FC<StoryDialogProps> = ({ open, handleClose, userIds })
                 </IconButton>
             </Toolbar>
             <StoryPreview userIds={userIds} />
-        </Dialog>
-
+        </StyledDialog>
     )
 }
 
