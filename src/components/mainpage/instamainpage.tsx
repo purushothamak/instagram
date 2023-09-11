@@ -5,6 +5,7 @@ import HeaderStories from "../Header/HeaderStories";
 import InstaFeeds from "../FeedsSection/InstaFeeds";
 import "../../App.css";
 import { ThemeProvider, createTheme } from "@mui/material";
+
 const theme = createTheme();
 
 function Instamainpage() {
