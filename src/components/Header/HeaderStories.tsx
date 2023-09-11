@@ -60,6 +60,7 @@ const HeaderStories = () => {
   };
 
   return (
+
     <div>
       <ImageList
         sx={{
@@ -69,7 +70,7 @@ const HeaderStories = () => {
           mx: isMobile ? 0 : 0,
           mr: isMobile ? 0 : 20,
           ml: isMobile ? 0 : 18,
-          mt: isMobile ? 0 : -29,
+          mt: isMobile ? 0 : -42,
         }}
       >
         {profiles.map((profStory) => (
