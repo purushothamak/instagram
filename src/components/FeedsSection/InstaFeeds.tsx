@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal } from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -13,6 +13,7 @@ import LikeButton from "./LikeButton";
 import SaveButton from "./SaveButton";
 import EditFeeds from "./EditFeeds";
 import PostComments from "./PostComments";
+import { useFeedsContext } from "../../Context/CommentsDatas.context";
 
 interface Post {
   uId: number;
@@ -22,6 +23,7 @@ interface Post {
   id: number;
 }
 
+
 const InstaFeeds = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [page, setPage] = useState(2);
@@ -29,6 +31,10 @@ const InstaFeeds = () => {
   const [commentsOpen, setCommentsOpen] = useState(false);
   const [commentEachId, setCommentEachId] = useState<number>();
   const drawerWidth = 250;
+
+  const { feedsComments, feedCmtId } = useFeedsContext();
+
+  console.log("What id is this", feedCmtId)
 
   useEffect(() => {
     const instaPostsDatas = async () => {
@@ -38,7 +44,7 @@ const InstaFeeds = () => {
           throw new Error("Network response was not ok");
         }
         const postdatas = await allPosts.json();
-        console.log("check posts::", postdatas.products);
+        // console.log("check posts::", postdatas.products);
 
         const post = postdatas.products.map((post: {
           url: any;
@@ -51,7 +57,7 @@ const InstaFeeds = () => {
             uProfileLogo: `https://i.pravatar.cc/100?u=${post.id}`
           }
         ))
-        console.log("Yo:", post)
+        // console.log("Yo:", post)
         setPosts((prevPosts) => [...prevPosts, ...post]);
       } catch (error) {
         console.error("Error fetching posts:", error);
@@ -80,7 +86,7 @@ const InstaFeeds = () => {
   const handleOpenSettings = () => {
     setSettingOpen(true);
   }
-  const handleClose = (_value: string) => {  //prefix
+  const handleClose = (_value?: string) => {  //prefix
     setSettingOpen(false);
   };
   const handleCommentClick = (comUserId: number) => {
@@ -138,9 +144,18 @@ const InstaFeeds = () => {
               </IconButton>
             </Box>
           </CardActions>
+          <ul>
+            {feedsComments[post.uId]?.map((comment: { text: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }, index: Key | null | undefined) => (
+              <li key={index}>{comment.text}</li>
+            ))}
+          </ul>
+          <ul>
+            {feedsComments.map((x: { text: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }, i: Key | null | undefined) => (
+              <li key={i}>{x.text}</li>
+            ))}
+          </ul>
         </Card>
       ))}
-
       {settingOpen && <EditFeeds settingOpen={settingOpen} handleClose={handleClose} />}
       {commentsOpen && <PostComments commentsOpen={commentsOpen} handleCommentsClose={handleCommentsClose} commentEachId={commentEachId} />}
     </Box>

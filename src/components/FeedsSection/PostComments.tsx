@@ -10,12 +10,15 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardHeader from '@mui/material/CardHeader';
 import Avatar from '@mui/material/Avatar';
+import { useFeedsContext } from '../../Context/CommentsDatas.context';
+
 
 
 interface commentsProps {
     commentsOpen: boolean;
     handleCommentsClose: () => void;
     commentEachId?: number;
+
     // images: string[];
 }
 
@@ -30,6 +33,9 @@ interface Comment {
 const PostComments: React.FC<commentsProps> = ({ commentsOpen, handleCommentsClose, commentEachId }) => {
     const theme = useTheme<Theme>();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+    const { addFeedComments } = useFeedsContext();
+
+    // console.log("Got Comments:")
 
     const [commentEachDetails, setCommentEachDetails] = useState<pp>({});
     const [comments, setComments] = useState<Comment[]>([]);
@@ -37,6 +43,8 @@ const PostComments: React.FC<commentsProps> = ({ commentsOpen, handleCommentsClo
 
     const { thumbnail, title, brand }: { thumbnail?: string, title?: string, brand?: string } = commentEachDetails
 
+    // console.log("Post Feedssssss", commentEachId)
+    // console.log("Post showwwwwww", posts.id)
 
     useEffect(() => {
         const instaPostsDatas = async () => {
@@ -64,6 +72,8 @@ const PostComments: React.FC<commentsProps> = ({ commentsOpen, handleCommentsClo
                 text: newComment,
             };
             setComments([...comments, comment]);
+            addFeedComments(comment) //c
+            // getFeedCommentsById(commentEachId)
             setNewComment('');
         }
     };
