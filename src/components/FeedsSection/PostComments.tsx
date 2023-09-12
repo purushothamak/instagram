@@ -10,14 +10,14 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardHeader from '@mui/material/CardHeader';
 import Avatar from '@mui/material/Avatar';
-import { useFeedsContext } from '../../Context/CommentsDatas.context';
+import { useCommentContext } from '../../Context/CommentsDatas.context';
 
 
 
 interface commentsProps {
     commentsOpen: boolean;
     handleCommentsClose: () => void;
-    commentEachId?: number;
+    commentEachId: number;
 
     // images: string[];
 }
@@ -33,13 +33,15 @@ interface Comment {
 const PostComments: React.FC<commentsProps> = ({ commentsOpen, handleCommentsClose, commentEachId }) => {
     const theme = useTheme<Theme>();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-    const { addFeedComments } = useFeedsContext();
+    const { addComment } = useCommentContext();
+
 
     // console.log("Got Comments:")
 
     const [commentEachDetails, setCommentEachDetails] = useState<pp>({});
     const [comments, setComments] = useState<Comment[]>([]);
     const [newComment, setNewComment] = useState<string>('');
+    // const [newCommentText, setNewCommentText] = useState<string>('');
 
     const { thumbnail, title, brand }: { thumbnail?: string, title?: string, brand?: string } = commentEachDetails
 
@@ -66,16 +68,8 @@ const PostComments: React.FC<commentsProps> = ({ commentsOpen, handleCommentsClo
     const proPic = `https://i.pravatar.cc/100?u=${commentEachId}`
 
     const handleAddComment = () => {
-        if (newComment.trim() !== '') {
-            const comment: Comment = {
-                id: Date.now(),
-                text: newComment,
-            };
-            setComments([...comments, comment]);
-            addFeedComments(comment) //c
-            // getFeedCommentsById(commentEachId)
-            setNewComment('');
-        }
+        addComment(commentEachId, newComment);
+        setNewComment('');
     };
 
 

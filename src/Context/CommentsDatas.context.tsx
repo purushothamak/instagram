@@ -1,88 +1,38 @@
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { ReactNode, createContext, useContext, useState } from 'react';
 
-interface CommentProps {
-    map: any;
-    id: number;
+interface Comment {
+    commentEachId: number;
     text: string;
 }
 
-interface CommentsContextType {
-    feedsComments: CommentProps[];
-    feedCmtId?: number;
-    addFeedComments: (todo: CommentProps) => void;
-    // getFeedCommentsById: (id?: number) => CommentProps[];
-}
-interface CommentsProviderProps {
-    children: ReactNode;
-}
-const FeedsCommentsContext = createContext<CommentsContextType | undefined>(undefined);
-
-export const useFeedsContext = () => {
-    const fContext = useContext(FeedsCommentsContext);
-    if (!fContext) {
-        throw new Error('useFeedsContext must be used within a FeedsProvider');
-    }
-    return fContext;
-    // return useContext(FeedsCommentsContext);
+interface CommentContextType {
+    comments2: Record<number, Comment[]>;
+    addComment: (commentEachId: number, text: string) => void;
 }
 
+const CommentContext = createContext<CommentContextType | undefined>(undefined);
 
-export const FeedsCommentsProvider: React.FC<CommentsProviderProps> = ({ children }) => {
-    const [feedsComments, setFeedsComments] = useState<CommentProps[]>([]);
-    const [feedCmtId, setFeedCmtId] = useState<number>();
-
-    console.log("This is the feeds comments::", feedsComments)
-
-    const addFeedComments = (comments: CommentProps) => {
-        setFeedsComments([...feedsComments, comments]);
-    };
-
-
-
-    // const addFeedComments = (commentEachId: number, text: string) => {
-    //     const newComment = { commentEachId, text };
-    //     setFeedsComments((prevComments: any[]) => ({
-    //         ...prevComments,
-    //         [commentEachId]: [...(prevComments[commentEachId] || []), newComment],
-    //     }));
-    // };
-
-
-
-    return (
-        <FeedsCommentsContext.Provider value={{ feedsComments, addFeedComments, feedCmtId }}>
-            {children}
-        </FeedsCommentsContext.Provider>
-    );
+export const useCommentContext = () => {
+    return useContext(CommentContext)!;
 };
 
 
 
+export const CommentProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+    const [comments2, setComments2] = useState<Record<number, Comment[]>>({});
 
+    const addComment = (commentEachId: number, text: string) => {
+        if (text.trim() !== '') {
+            setComments2((prevComments) => ({
+                ...prevComments,
+                [commentEachId]: [...(prevComments[commentEachId] || []), { commentEachId, text }],
+            }));
+        }
+    };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function setComments(arg0: (prevComments: any) => any) {
-//     throw new Error('Function not implemented.');
-// }
-
-    // const addFeedComments = (id: number, text: string) => {
-    //     const newComment = { id, text };
-    //     setFeedsComments((prevComments) => ({
-    //         ...prevComments,
-    //         [id]: [...(prevComments[id] || []), newComment],
-    //     }));
-    // };
+    return (
+        <CommentContext.Provider value={{ comments2, addComment }}>
+            {children}
+        </CommentContext.Provider>
+    );
+};

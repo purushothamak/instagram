@@ -13,7 +13,7 @@ import LikeButton from "./LikeButton";
 import SaveButton from "./SaveButton";
 import EditFeeds from "./EditFeeds";
 import PostComments from "./PostComments";
-import { useFeedsContext } from "../../Context/CommentsDatas.context";
+import { useCommentContext } from "../../Context/CommentsDatas.context";
 
 interface Post {
   uId: number;
@@ -24,17 +24,18 @@ interface Post {
 }
 
 
+
+
 const InstaFeeds = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [page, setPage] = useState(2);
   const [settingOpen, setSettingOpen] = useState(false);
   const [commentsOpen, setCommentsOpen] = useState(false);
-  const [commentEachId, setCommentEachId] = useState<number>();
+  const [commentEachId, setCommentEachId] = useState<any>();
   const drawerWidth = 250;
+  const { comments2 } = useCommentContext();
 
-  const { feedsComments, feedCmtId } = useFeedsContext();
 
-  console.log("What id is this", feedCmtId)
 
   useEffect(() => {
     const instaPostsDatas = async () => {
@@ -145,13 +146,8 @@ const InstaFeeds = () => {
             </Box>
           </CardActions>
           <ul>
-            {feedsComments[post.uId]?.map((comment: { text: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }, index: Key | null | undefined) => (
-              <li key={index}>{comment.text}</li>
-            ))}
-          </ul>
-          <ul>
-            {feedsComments.map((x: { text: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }, i: Key | null | undefined) => (
-              <li key={i}>{x.text}</li>
+            {comments2[post.uId]?.map((comment, i) => (
+              <li key={i}>{comment.text}</li>
             ))}
           </ul>
         </Card>
