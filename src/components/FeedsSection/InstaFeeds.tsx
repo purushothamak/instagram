@@ -8,7 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import { MoreHoriz } from "@mui/icons-material";
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
-import { AppBar, Box, Typography } from "@mui/material";
+import { AppBar, Box, Divider, List, ListItem, ListItemButton, ListItemText, Typography } from "@mui/material";
 import LikeButton from "./LikeButton";
 import SaveButton from "./SaveButton";
 import EditFeeds from "./EditFeeds";
@@ -93,6 +93,7 @@ const InstaFeeds = () => {
   const handleCommentClick = (comUserId: number) => {
     setCommentsOpen(!commentsOpen)
     setCommentEachId(comUserId)
+
   }
   const handleCommentsClose = () => {
     setCommentsOpen(false);
@@ -145,15 +146,19 @@ const InstaFeeds = () => {
               </IconButton>
             </Box>
           </CardActions>
-          <ul>
-            {comments2[post.uId]?.map((comment, i) => (
-              <li key={i}>{comment.text}</li>
-            ))}
-          </ul>
+          {comments2[post.uId]?.map((comment, i) => (
+            <List key={i} sx={{ pl: 2 }}>
+              <ListItem disablePadding>
+                <ListItemText primary={comment.text} />
+              </ListItem>
+            </List>
+          ))}
         </Card>
       ))}
+
       {settingOpen && <EditFeeds settingOpen={settingOpen} handleClose={handleClose} />}
       {commentsOpen && <PostComments commentsOpen={commentsOpen} handleCommentsClose={handleCommentsClose} commentEachId={commentEachId} />}
+
     </Box>
   );
 };

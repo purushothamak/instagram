@@ -29,7 +29,6 @@ export const CommentProvider: React.FC<{ children: ReactNode }> = ({ children })
             }));
         }
     };
-
     return (
         <CommentContext.Provider value={{ comments2, addComment }}>
             {children}

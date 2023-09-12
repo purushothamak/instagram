@@ -33,10 +33,11 @@ interface Comment {
 const PostComments: React.FC<commentsProps> = ({ commentsOpen, handleCommentsClose, commentEachId }) => {
     const theme = useTheme<Theme>();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-    const { addComment } = useCommentContext();
+    const { addComment, comments2 } = useCommentContext();
 
 
-    // console.log("Got Comments:")
+    console.log("Got Comments:", comments2)
+
 
     const [commentEachDetails, setCommentEachDetails] = useState<pp>({});
     const [comments, setComments] = useState<Comment[]>([]);
@@ -105,13 +106,13 @@ const PostComments: React.FC<commentsProps> = ({ commentsOpen, handleCommentsClo
                         <CardContent sx={{ flex: 1 }}>
                             <Typography variant="body2" color="text.secondary">
                                 <Box marginTop={2}>
-                                    <List>
-                                        {comments.map((comment) => (
-                                            <ListItem key={comment.id}>
+                                    {comments2[commentEachId]?.map((comment, i) => (
+                                        <List key={i} sx={{ pl: 2 }}>
+                                            <ListItem disablePadding>
                                                 <ListItemText primary={comment.text} />
                                             </ListItem>
-                                        ))}
-                                    </List>
+                                        </List>
+                                    ))}
                                 </Box>
                             </Typography>
                         </CardContent>
