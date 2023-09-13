@@ -4,6 +4,7 @@ import ImageListItem from "@mui/material/ImageListItem";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import PostCard from "./Postcard";
+import SavedPostsUI from "../../UI/SavedPostsUI";
 
 export default function PostImageList() {
   const [value, setValue] = useState(0);
@@ -48,7 +49,9 @@ export default function PostImageList() {
           ))}
         </ImageList>
       </div>
-      <div role="tabpanel" hidden={value !== 2}></div>
+      <div role="tabpanel" hidden={value !== 2}>
+        <SavedPostsUI />
+      </div>
     </div>
   );
 }

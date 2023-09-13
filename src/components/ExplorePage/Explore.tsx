@@ -7,11 +7,9 @@ interface ExplorProps {
 }
 const drawerWidth = 240
 
-
 const Explore = () => {
     const [explorePosts, setExplorePosts] = useState<ExplorProps[]>([]);
     const [page, setPage] = useState(1);
-
 
     useEffect(() => {
         try {
@@ -29,7 +27,6 @@ const Explore = () => {
         } catch (error) {
             console.log("Quinzz", error)
         }
-
     }, [page])
 
     const handleInfiniteScroll = async () => {
