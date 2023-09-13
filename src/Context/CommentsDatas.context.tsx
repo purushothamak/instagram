@@ -8,10 +8,19 @@ interface Comment {
 interface CommentContextType {
     comments2: Record<number, Comment[]>;
     addComment: (commentEachId: number, text: string) => void;
-    addSavedPosts: (savId: number) => void;
-    savedPostId: number;
+    addSavedPosts: (post: Post) => void;
+    selectedItems: Post[];
 }
 
+interface Post {
+    [x: string]: any;
+    uId: number;
+    uImg: string;
+    uProfileLogo: string
+    uName: string;
+    id: number;
+    uBrand: string;
+}
 const CommentContext = createContext<CommentContextType | undefined>(undefined);
 
 export const useCommentContext = () => {
@@ -19,10 +28,11 @@ export const useCommentContext = () => {
 };
 
 
-
 export const CommentProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [comments2, setComments2] = useState<Record<number, Comment[]>>({});
-    const [savedPostId, setSavedPostId] = useState<number>(0);
+    const [selectedItems, setSelectedItems] = useState<Post[]>([]);
+
+
 
     const addComment = (commentEachId: number, text: string) => {
         if (text.trim() !== '') {
@@ -33,14 +43,13 @@ export const CommentProvider: React.FC<{ children: ReactNode }> = ({ children })
         }
     };
 
-    const addSavedPosts = (savId: number) => {
-        console.log("Clicked matcha", savId)
-        setSavedPostId(savId)
+    const addSavedPosts = (posts: Post) => {
+        // console.log("Clicked matcha", posts)
+        setSelectedItems([...selectedItems, posts])
     }
 
-    console.log(savedPostId)
     return (
-        <CommentContext.Provider value={{ comments2, addComment, addSavedPosts, savedPostId }}>
+        <CommentContext.Provider value={{ comments2, addComment, addSavedPosts, selectedItems }}>
             {children}
         </CommentContext.Provider>
     );

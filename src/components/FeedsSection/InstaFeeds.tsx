@@ -1,4 +1,4 @@
-import React, { useState, useEffect, JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal } from "react";
+import React, { useState, useEffect, } from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -8,7 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import { MoreHoriz } from "@mui/icons-material";
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
-import { AlertProps, AppBar, Box, Divider, List, ListItem, ListItemButton, ListItemText, Snackbar, Typography } from "@mui/material";
+import { AppBar, Box, List, ListItem, ListItemText, Typography } from "@mui/material";
 import LikeButton from "./LikeButton";
 import SaveButton from "./SaveButton";
 import EditFeeds from "./EditFeeds";
@@ -22,7 +22,10 @@ interface Post {
   uProfileLogo: string
   uName: string;
   id: number;
+  uBrand: string;
 }
+
+
 
 
 
@@ -34,8 +37,8 @@ const InstaFeeds = () => {
   const [settingOpen, setSettingOpen] = useState(false);
   const [commentsOpen, setCommentsOpen] = useState(false);
   const [commentEachId, setCommentEachId] = useState<any>();
+  const [snackOpen, setSnakOpenOpen] = useState(false);
   const { comments2, addSavedPosts } = useCommentContext();
-  const [snakOpen, setSnakOpen] = useState(false);
 
 
 
@@ -52,12 +55,13 @@ const InstaFeeds = () => {
 
         const post = postdatas.products.map((post: {
           url: any;
-          images: any; title: any; id: any;
+          images: any; title: any; id: any; brand: any
         }) => (
           {
             uId: post.id,
             uName: post.title,
             uImg: post.images[1],
+            uBrand: post.brand,
             uProfileLogo: `https://i.pravatar.cc/100?u=${post.id}`
           }
         ))
@@ -102,12 +106,11 @@ const InstaFeeds = () => {
     setCommentsOpen(false);
   };
 
-  const [snackOpen, setSnakOpenOpen] = useState(false);
 
-  const handleSavePosts = (savId: number) => {
-    addSavedPosts(savId);
+  const handleSavePosts = (posts: Post) => {
+    console.log('90909090', posts)
+    addSavedPosts(posts);
     setSnakOpenOpen(true);
-
   }
   const snackHandleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
@@ -159,7 +162,7 @@ const InstaFeeds = () => {
               </IconButton>
             </Box>
             <Box>
-              <IconButton aria-label="save" onClick={() => handleSavePosts(post.uId)}>
+              <IconButton aria-label="save" onClick={() => handleSavePosts(post)}>
                 <SaveButton />
               </IconButton>
             </Box>
