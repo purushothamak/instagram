@@ -26,6 +26,7 @@ function SimpleDialog(props: SimpleDialogProps) {
     const { onClose, selectedValue, open } = props;
     const [snakOpen, setSnakOpen] = useState(false);
 
+
     const handleDetails = (ids: number) => {
         if (ids === 1) {
             setSnakOpen(true)

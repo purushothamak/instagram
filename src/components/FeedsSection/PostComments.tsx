@@ -22,7 +22,7 @@ interface commentsProps {
     // images: string[];
 }
 
-interface pp {
+interface thumbnailProp {
     thumbnail?: string;
 }
 interface Comment {
@@ -35,19 +35,11 @@ const PostComments: React.FC<commentsProps> = ({ commentsOpen, handleCommentsClo
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     const { addComment, comments2 } = useCommentContext();
 
-
-    console.log("Got Comments:", comments2)
-
-
-    const [commentEachDetails, setCommentEachDetails] = useState<pp>({});
-    const [comments, setComments] = useState<Comment[]>([]);
+    const [commentEachDetails, setCommentEachDetails] = useState<thumbnailProp>({});
+    // const [comments, setComments] = useState<Comment[]>([]);
     const [newComment, setNewComment] = useState<string>('');
-    // const [newCommentText, setNewCommentText] = useState<string>('');
 
     const { thumbnail, title, brand }: { thumbnail?: string, title?: string, brand?: string } = commentEachDetails
-
-    // console.log("Post Feedssssss", commentEachId)
-    // console.log("Post showwwwwww", posts.id)
 
     useEffect(() => {
         const instaPostsDatas = async () => {

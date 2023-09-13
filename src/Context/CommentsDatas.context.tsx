@@ -8,6 +8,8 @@ interface Comment {
 interface CommentContextType {
     comments2: Record<number, Comment[]>;
     addComment: (commentEachId: number, text: string) => void;
+    addSavedPosts: (savId: number) => void;
+    savedPostId: number;
 }
 
 const CommentContext = createContext<CommentContextType | undefined>(undefined);
@@ -20,6 +22,7 @@ export const useCommentContext = () => {
 
 export const CommentProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [comments2, setComments2] = useState<Record<number, Comment[]>>({});
+    const [savedPostId, setSavedPostId] = useState<number>(0);
 
     const addComment = (commentEachId: number, text: string) => {
         if (text.trim() !== '') {
@@ -29,8 +32,15 @@ export const CommentProvider: React.FC<{ children: ReactNode }> = ({ children })
             }));
         }
     };
+
+    const addSavedPosts = (savId: number) => {
+        console.log("Clicked matcha", savId)
+        setSavedPostId(savId)
+    }
+
+    console.log(savedPostId)
     return (
-        <CommentContext.Provider value={{ comments2, addComment }}>
+        <CommentContext.Provider value={{ comments2, addComment, addSavedPosts, savedPostId }}>
             {children}
         </CommentContext.Provider>
     );

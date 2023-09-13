@@ -1,4 +1,4 @@
-import { useState, useEffect, JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal } from "react";
+import React, { useState, useEffect, JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal } from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -8,12 +8,13 @@ import IconButton from "@mui/material/IconButton";
 import { MoreHoriz } from "@mui/icons-material";
 import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
-import { AppBar, Box, Divider, List, ListItem, ListItemButton, ListItemText, Typography } from "@mui/material";
+import { AlertProps, AppBar, Box, Divider, List, ListItem, ListItemButton, ListItemText, Snackbar, Typography } from "@mui/material";
 import LikeButton from "./LikeButton";
 import SaveButton from "./SaveButton";
 import EditFeeds from "./EditFeeds";
 import PostComments from "./PostComments";
 import { useCommentContext } from "../../Context/CommentsDatas.context";
+import SnackBar from "../UI/SnackBar";
 
 interface Post {
   uId: number;
@@ -27,13 +28,15 @@ interface Post {
 
 
 const InstaFeeds = () => {
+  const drawerWidth = 250;
   const [posts, setPosts] = useState<Post[]>([]);
   const [page, setPage] = useState(2);
   const [settingOpen, setSettingOpen] = useState(false);
   const [commentsOpen, setCommentsOpen] = useState(false);
   const [commentEachId, setCommentEachId] = useState<any>();
-  const drawerWidth = 250;
-  const { comments2 } = useCommentContext();
+  const { comments2, addSavedPosts } = useCommentContext();
+  const [snakOpen, setSnakOpen] = useState(false);
+
 
 
 
@@ -99,6 +102,21 @@ const InstaFeeds = () => {
     setCommentsOpen(false);
   };
 
+  const [snackOpen, setSnakOpenOpen] = useState(false);
+
+  const handleSavePosts = (savId: number) => {
+    addSavedPosts(savId);
+    setSnakOpenOpen(true);
+
+  }
+  const snackHandleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSnakOpenOpen(false);
+  };
+
+
   return (
     <Box
       component="main"
@@ -141,7 +159,7 @@ const InstaFeeds = () => {
               </IconButton>
             </Box>
             <Box>
-              <IconButton aria-label="save">
+              <IconButton aria-label="save" onClick={() => handleSavePosts(post.uId)}>
                 <SaveButton />
               </IconButton>
             </Box>
@@ -155,7 +173,7 @@ const InstaFeeds = () => {
           ))}
         </Card>
       ))}
-
+      <SnackBar snackOpen={snackOpen} snackHandleClose={snackHandleClose} />
       {settingOpen && <EditFeeds settingOpen={settingOpen} handleClose={handleClose} />}
       {commentsOpen && <PostComments commentsOpen={commentsOpen} handleCommentsClose={handleCommentsClose} commentEachId={commentEachId} />}
 
