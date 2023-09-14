@@ -1,9 +1,8 @@
-import React from 'react'
 
 const JustDisplay = () => {
     return (
         <div>
-            <h1>Page Under Construction</h1>
+            <h1>Comming Soon..</h1>
         </div>
     )
 }

@@ -10,16 +10,19 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardHeader from '@mui/material/CardHeader';
 import Avatar from '@mui/material/Avatar';
+import { useCommentContext } from '../../Context/CommentsDatas.context';
+
 
 
 interface commentsProps {
     commentsOpen: boolean;
     handleCommentsClose: () => void;
-    commentEachId?: number;
+    commentEachId: number;
+
     // images: string[];
 }
 
-interface pp {
+interface thumbnailProp {
     thumbnail?: string;
 }
 interface Comment {
@@ -30,13 +33,13 @@ interface Comment {
 const PostComments: React.FC<commentsProps> = ({ commentsOpen, handleCommentsClose, commentEachId }) => {
     const theme = useTheme<Theme>();
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+    const { addComment, comments2 } = useCommentContext();
 
-    const [commentEachDetails, setCommentEachDetails] = useState<pp>({});
-    const [comments, setComments] = useState<Comment[]>([]);
+    const [commentEachDetails, setCommentEachDetails] = useState<thumbnailProp>({});
+    // const [comments, setComments] = useState<Comment[]>([]);
     const [newComment, setNewComment] = useState<string>('');
 
     const { thumbnail, title, brand }: { thumbnail?: string, title?: string, brand?: string } = commentEachDetails
-
 
     useEffect(() => {
         const instaPostsDatas = async () => {
@@ -58,14 +61,8 @@ const PostComments: React.FC<commentsProps> = ({ commentsOpen, handleCommentsClo
     const proPic = `https://i.pravatar.cc/100?u=${commentEachId}`
 
     const handleAddComment = () => {
-        if (newComment.trim() !== '') {
-            const comment: Comment = {
-                id: Date.now(),
-                text: newComment,
-            };
-            setComments([...comments, comment]);
-            setNewComment('');
-        }
+        addComment(commentEachId, newComment);
+        setNewComment('');
     };
 
 
@@ -101,13 +98,13 @@ const PostComments: React.FC<commentsProps> = ({ commentsOpen, handleCommentsClo
                         <CardContent sx={{ flex: 1 }}>
                             <Typography variant="body2" color="text.secondary">
                                 <Box marginTop={2}>
-                                    <List>
-                                        {comments.map((comment) => (
-                                            <ListItem key={comment.id}>
+                                    {comments2[commentEachId]?.map((comment, i) => (
+                                        <List key={i} sx={{ pl: 2 }}>
+                                            <ListItem disablePadding>
                                                 <ListItemText primary={comment.text} />
                                             </ListItem>
-                                        ))}
-                                    </List>
+                                        </List>
+                                    ))}
                                 </Box>
                             </Typography>
                         </CardContent>

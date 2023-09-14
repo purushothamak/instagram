@@ -15,12 +15,14 @@
     "@mui/icons-material": "^5.14.7",
     "@mui/material": "^5.14.7",
     "@mui/system": "^5.14.7",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-insta-stories": "^2.6.2",
     "react-modal": "^3.16.1"
-    "react-insta-stories": "^2.6.2"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.198",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",

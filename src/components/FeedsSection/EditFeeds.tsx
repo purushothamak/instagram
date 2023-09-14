@@ -21,13 +21,18 @@ interface settingsProps {
 }
 
 
+
 function SimpleDialog(props: SimpleDialogProps) {
     const { onClose, selectedValue, open } = props;
     const [snakOpen, setSnakOpen] = useState(false);
 
+
     const handleDetails = (ids: number) => {
         if (ids === 1) {
             setSnakOpen(true)
+        }
+        if (ids === 5) {
+            onClose(selectedValue);
         }
     }
 
@@ -35,22 +40,24 @@ function SimpleDialog(props: SimpleDialogProps) {
         onClose(selectedValue);
     };
     return (
-        <Dialog onClose={handleClose} open={open}>
-            <List sx={{ pt: 0, px: 8, justifyContent: 'center' }}>
-                {settionsOptions.map((options) => (
-                    <ListItem disableGutters key={options.id} sx={{ my: -1 }}>
-                        <ListItemButton>
-                            <ListItemText primary={options.title} sx={{ display: 'flex', justifyContent: 'center' }} onClick={() => handleDetails(options.id)} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List>
-            <Snackbar open={snakOpen} autoHideDuration={6000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-                    Reported Successfully
-                </Alert>
-            </Snackbar>
-        </Dialog>
+        <div>
+            <Dialog onClose={handleClose} open={open}>
+                <List sx={{ pt: 0, px: 8, justifyContent: 'center' }}>
+                    {settionsOptions.map((options) => (
+                        <ListItem disableGutters key={options.id} sx={{ my: -1 }}>
+                            <ListItemButton>
+                                <ListItemText primary={options.title} sx={{ display: 'flex', justifyContent: 'center' }} onClick={() => handleDetails(options.id)} />
+                            </ListItemButton>
+                        </ListItem>
+                    ))}
+                </List>
+                <Snackbar open={snakOpen} autoHideDuration={6000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                        Reported Successfully
+                    </Alert>
+                </Snackbar>
+            </Dialog>
+        </div>
     );
 }
 

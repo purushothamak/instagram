@@ -8,6 +8,7 @@ import SavedPostsUI from "../../UI/SavedPostsUI";
 import "./PostSection.css";
 import FeedCard from "../../UI/FeedCard";
 
+
 export default function PostImageList() {
   const [value, setValue] = useState(0);
   const [postData, setPostData] = useState();
@@ -54,7 +55,9 @@ export default function PostImageList() {
           ))}
         </ImageList>
       </div>
-      <div role="tabpanel" hidden={value !== 2}></div>
+      <div role="tabpanel" hidden={value !== 2}>
+        <SavedPostsUI />
+      </div>
     </div>
   );
 }
