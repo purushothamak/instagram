@@ -17,7 +17,7 @@ import PostComments from "./PostComments";
 interface Post {
   uId: number;
   uImg: string;
-  uProfileLogo: string
+  uProfileLogo: string;
   uName: string;
   id: number;
 }
@@ -33,7 +33,9 @@ const InstaFeeds = () => {
   useEffect(() => {
     const instaPostsDatas = async () => {
       try {
-        const allPosts = await fetch(`https://dummyjson.com/products?_limit=9&_page=${page}`);
+        const allPosts = await fetch(
+          `https://dummyjson.com/products?_limit=9&_page=${page}`
+        );
         if (!allPosts.ok) {
           throw new Error("Network response was not ok");
         }
@@ -62,19 +64,20 @@ const InstaFeeds = () => {
 
   const handleInfiniteScroll = async () => {
     try {
-      if (window.innerHeight + document.documentElement.scrollTop + 1 >
+      if (
+        window.innerHeight + document.documentElement.scrollTop + 1 >
         document.documentElement.scrollHeight
       ) {
-        setPage((prev) => prev + 1)
+        setPage((prev) => prev + 1);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleInfiniteScroll);
-    return () => window.removeEventListener('scroll', handleInfiniteScroll)
+    window.addEventListener("scroll", handleInfiniteScroll);
+    return () => window.removeEventListener("scroll", handleInfiniteScroll);
   }, []);
 
   const handleOpenSettings = () => {
@@ -148,8 +151,3 @@ const InstaFeeds = () => {
 };
 
 export default InstaFeeds;
-
-
-
-
-// https://dummyjson.com/products
