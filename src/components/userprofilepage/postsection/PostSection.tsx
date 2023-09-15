@@ -5,6 +5,9 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import PostCard from "./Postcard";
 import SavedPostsUI from "../../UI/SavedPostsUI";
+import "./PostSection.css";
+import FeedCard from "../../UI/FeedCard";
+
 
 export default function PostImageList() {
   const [value, setValue] = useState(0);
@@ -21,7 +24,10 @@ export default function PostImageList() {
     setValue(newValue);
   };
   return (
-    <div>
+    <div
+      className="postimage-list"
+      style={{ position: "relative", left: "3em" }}
+    >
       <Tabs value={value} onChange={handleChange} centered textColor="primary">
         <Tab label="MyPost" />
         <Tab label="post" />
