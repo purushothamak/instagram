@@ -3,14 +3,11 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
+import postcard from 
 
 export default function PostImageList() {
   const [value, setValue] = useState(0);
-  const [postData, setPostData] = useState<{
-    username: string;
-    image: File | null;
-    description: string;
-  } | null>(null);
+  const [postData, setPostData] = useState([]);
 
   useEffect(() => {
     const storedData = sessionStorage.getItem("postData");
@@ -31,13 +28,9 @@ export default function PostImageList() {
         <Tab label="Tagged" />
       </Tabs>
       <div hidden={value !== 0}>
-        {postData && (
-          <div>
-            <h2>Username: {postData.username}</h2>
-            <h2>Description: {postData.description}</h2>
-            {/* <img>{postData.image}</img> */}
-          </div>
-        )}
+        {postData.map((post, index) => (
+          <PostCard key={index} postData={post} />
+        ))}
       </div>
       <div role="tabpanel" hidden={value !== 1}>
         <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
