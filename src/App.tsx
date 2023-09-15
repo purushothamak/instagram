@@ -7,13 +7,22 @@ import AddPostMainPage from "./components/AddPost/AddPostmainpage";
 import JustDisplay from "./components/Extra/JustDisplay";
 import Explore from "./components/ExplorePage/Explore";
 import InstaSideBar from "./components/Sidebar/InstaSideBar";
+import Loginpage from "./components/LoginPage/Loginpage";
 
 function App() {
   return (
     <BrowserRouter>
-      <InstaSideBar />
       <Routes>
-        <Route path="/" element={<Instamainpage />} />
+        <Route
+          path="/"
+          element={
+            <div>
+              <Loginpage />
+            </div>
+          }
+        />
+        <Route path="/" element={<Loginpage />} />
+        <Route path="/home" element={<Instamainpage />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/userprofile" element={<Profilemainpage />} />
         <Route path="/SearchUser" element={<Search />} />
