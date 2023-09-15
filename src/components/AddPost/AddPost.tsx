@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -7,13 +7,29 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import { useNavigate } from "react-router-dom";
+import React from "react";
+
+interface PostData {
+  username: string;
+  description: string;
+  image: string | null;
+}
 
 function AddPost() {
+  const [postData, setPostData] = useState<PostData[]>([]);
   const [username, setUsername] = useState("");
   const [image, setImage] = useState<File | null>(null);
   const [description, setDescription] = useState("");
   const [imageURL, setImageURL] = useState<string | null>("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedData = localStorage.getItem("postData");
+    if (storedData) {
+      setPostData(JSON.parse(storedData));
+    }
+  }, []);
+
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedImage = e.target.files?.[0];
 
@@ -31,14 +47,20 @@ function AddPost() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (!image || !username) {
       alert("Please add the title and image.");
       return;
     }
-    console.log("Submitted:", { username, image, description });
-    const postData = { username, image: imageURL, description };
-    localStorage.setItem("postData", JSON.stringify(postData));
-    console.log("Submitted:", postData);
+
+    const newPost: PostData = { username, image: imageURL, description };
+
+    const updatedPostData = [...postData, newPost];
+
+    setPostData(updatedPostData);
+
+    localStorage.setItem("postData", JSON.stringify(updatedPostData));
+
     navigate("/userprofile");
   };
 

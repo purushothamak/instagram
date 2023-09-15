@@ -9,10 +9,10 @@ import "./PostSection.css";
 import FeedCard from "../../UI/FeedCard";
 
 
+
 export default function PostImageList() {
   const [value, setValue] = useState(0);
-  const [postData, setPostData] = useState();
-
+  const [postData, setPostData] = useState([]);
   useEffect(() => {
     const storedData = localStorage.getItem("postData");
     if (storedData) {
@@ -35,11 +35,11 @@ export default function PostImageList() {
         <Tab label="Tagged" />
       </Tabs>
       <div hidden={value !== 0}>
-        <PostCard
-          postData={
-            postData || { username: "", image: "string", description: "" }
-          }
-        />
+
+        {postData.map((post, index) => (
+          <PostCard key={index} postData={post} />
+        ))}
+
       </div>
       <div role="tabpanel" hidden={value !== 1}>
         <ImageList sx={{ height: 450 }} cols={3} rowHeight={164}>
