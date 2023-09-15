@@ -44,3 +44,9 @@
   color: rgb(0, 110, 255);
   margin: 0;
 }
+
+@media (max-width: 960px) {
+  .profile-widget {
+    display: none;
+  }
+}

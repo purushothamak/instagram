@@ -8,9 +8,9 @@ function Search() {
 
   return (
     <div>
-      <InstaSideBar />
+      {/* <InstaSideBar /> */}
       <SearchUser setResults={setResults} />
-      <SearchResults results={results} result={""} />
+      <SearchResults results={results} />
     </div>
   );
 }

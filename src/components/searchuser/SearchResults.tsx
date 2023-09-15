@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import "./SearchUser.css";
 import Avatar from "@mui/material/Avatar";
 import List from "@mui/material/List";
@@ -8,6 +8,8 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Divider from "@mui/material/Divider";
 
 interface SearchResultProps {
+  email: ReactNode;
+  name: any;
   result: string;
   results: string[];
   avatar: string;
@@ -39,10 +41,6 @@ const SearchResults: React.FC<{ results: SearchResultProps[] }> = ({
       ))}
     </List>
   );
-};
-
-const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
-  return <div className="search-result">{result}</div>;
 };
 
 export default SearchResults;

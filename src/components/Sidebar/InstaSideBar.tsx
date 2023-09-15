@@ -1,7 +1,7 @@
 import React from "react";
-
-import Box from "@mui/material/Box";
+import "./../../App.css";
 import CssBaseline from "@mui/material/CssBaseline";
+import Box from "@mui/material/Box";
 import * as Icons from "@mui/icons-material";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -10,7 +10,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Toolbar from "@mui/material/Toolbar";
 import { useMediaQuery, Theme, useTheme } from "@mui/material";
-import { StyledSidebarDrawer } from "./InstaSideBar.style";
+import { StyledSidebarDrawer, customStyles } from "./InstaSideBar.style";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import Paper from "@mui/material/Paper";
@@ -49,15 +49,20 @@ const InstaSideBar = () => {
     <div>
       {isMobile ? (
         <Paper
-          sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+          sx={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 3 }}
           elevation={3}
         >
           <BottomNavigation>
-            {sidebarOptions.map((item) => (
+            {sidebarOptions.map((item, index) => (
               <BottomNavigationAction
+                key={index}
                 label="Recents"
                 value="recents"
                 icon={React.createElement(Icons[item.icon])}
+                component={Link}
+                to={item.path}
+                sx={isMobile ? customStyles.mobileBottomNavAction : null}
+                className="custom-bottom-nav-action"
               />
             ))}
           </BottomNavigation>
@@ -77,6 +82,7 @@ const InstaSideBar = () => {
                 "& .MuiDrawer-paper": {
                   boxSizing: "border-box",
                   width: drawerWidth,
+                  padding: 0,
                 },
               }}
               open

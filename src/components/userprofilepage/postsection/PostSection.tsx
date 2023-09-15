@@ -1,39 +1,42 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, SetStateAction } from "react";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import postcard from 
+import PostCard from "./Postcard";
+import SavedPostsUI from "../../UI/SavedPostsUI";
+
 
 export default function PostImageList() {
   const [value, setValue] = useState(0);
   const [postData, setPostData] = useState([]);
-
   useEffect(() => {
-    const storedData = sessionStorage.getItem("postData");
+    const storedData = localStorage.getItem("postData");
     if (storedData) {
       const parsedData = JSON.parse(storedData);
       setPostData(parsedData);
     }
   }, []);
-  const handleChange = (event, newValue) => {
+  const handleChange = (_event: any, newValue: SetStateAction<number>) => {
     setValue(newValue);
   };
   return (
     <div>
-      <Tabs value={value} onChange={handleChange} centered textColor="white">
+      <Tabs value={value} onChange={handleChange} centered textColor="primary">
         <Tab label="MyPost" />
         <Tab label="post" />
         <Tab label="Saved" />
         <Tab label="Tagged" />
       </Tabs>
       <div hidden={value !== 0}>
+
         {postData.map((post, index) => (
           <PostCard key={index} postData={post} />
         ))}
+
       </div>
       <div role="tabpanel" hidden={value !== 1}>
-        <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+        <ImageList sx={{ height: 450 }} cols={3} rowHeight={164}>
           {itemData.map((item, index) => (
             <ImageListItem key={index}>
               <img
@@ -46,7 +49,9 @@ export default function PostImageList() {
           ))}
         </ImageList>
       </div>
-      <div role="tabpanel" hidden={value !== 2}></div>
+      <div role="tabpanel" hidden={value !== 2}>
+        <SavedPostsUI />
+      </div>
     </div>
   );
 }

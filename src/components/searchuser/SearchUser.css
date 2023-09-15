@@ -1,5 +1,5 @@
 .search-input {
-  position: fixed;
+  position: absolute;
   top: 4em;
   left: 38em;
 }
@@ -14,4 +14,9 @@
   max-height: 300px;
   overflow-y: scroll;
   color: black;
+}
+@media (max-width: 448px) {
+  .search-input {
+    position: inherit;
+  }
 }

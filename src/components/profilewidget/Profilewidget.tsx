@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import profile from "../.././assets/profile-pic.jpg";
+import profile from "../.././assets/profileimg.jpeg";
 import "./Profilewidget.css";
 
 function Profilewidget() {

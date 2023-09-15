@@ -6,8 +6,6 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
-<<<<<<< Updated upstream
-=======
 import { useNavigate } from "react-router-dom";
 import React from "react";
 
@@ -16,15 +14,12 @@ interface PostData {
   description: string;
   image: string | null;
 }
->>>>>>> Stashed changes
 
 function AddPost() {
   const [postData, setPostData] = useState<PostData[]>([]);
   const [username, setUsername] = useState("");
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState<File | null>(null);
   const [description, setDescription] = useState("");
-<<<<<<< Updated upstream
-=======
   const [imageURL, setImageURL] = useState<string | null>("");
   const navigate = useNavigate();
 
@@ -37,22 +32,22 @@ function AddPost() {
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedImage = e.target.files?.[0];
->>>>>>> Stashed changes
 
-  const handleImageChange = (e) => {
-    const selectedImage = e.target.files[0];
-    setImage(selectedImage);
+    if (selectedImage) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        if (event.target) {
+          setImageURL(event.target.result as string);
+        }
+      };
+      reader.readAsDataURL(selectedImage);
+      setImage(selectedImage);
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-<<<<<<< Updated upstream
 
-    console.log("Submitted:", { username, image, description });
-    const postData = { username, image, description };
-    sessionStorage.setItem("postData", JSON.stringify(postData));
-    console.log("Submitted:", postData);
-=======
     if (!image || !username) {
       alert("Please add the title and image.");
       return;
@@ -67,7 +62,6 @@ function AddPost() {
     localStorage.setItem("postData", JSON.stringify(updatedPostData));
 
     navigate("/userprofile");
->>>>>>> Stashed changes
   };
 
   return (
@@ -108,6 +102,9 @@ function AddPost() {
           <Typography variant="body1" color="textSecondary">
             Select Image
           </Typography>
+          {imageURL && (
+            <img src={imageURL} alt="Selected" style={{ maxWidth: "100%" }} />
+          )}
           <TextField
             label="Description"
             variant="outlined"
